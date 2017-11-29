@@ -1,4 +1,4 @@
-# Usage: docker run --restart=always -v /home/.karbowanec:/home/karbo/.karbowanec --network=host --name=karbo-fullnode -td looongcat/karbo-fullnode
+# Usage: docker run -i --restart=always -v /home/.karbowanec:/home/karbo/.karbowanec --network=host --name=karbo-fullnode -td looongcat/karbo-fullnode
 
 FROM debian:8
 LABEL version="0.0.1"
@@ -34,7 +34,7 @@ EXPOSE 32347/tcp 32348/tcp
 VOLUME ["/home/karbo/.karbowanec"]
 
 # OPTIONS for node!!!
-CMD ["--data-dir=/home/karbo/.karbowanec", "--restricted-rpc", "--rpc-bind-ip=0.0.0.0", "--rpc-bind-port=32348", "--fee-address=Kdev1L9V5ow3cdKNqDpLcFFxZCqu5W2GE9xMKewsB2pUXWxcXvJaUWHcSrHuZw91eYfQFzRtGfTemReSSMN4kE445i6Etb3"]
+CMD ["--fee-address=Kdev1L9V5ow3cdKNqDpLcFFxZCqu5W2GE9xMKewsB2pUXWxcXvJaUWHcSrHuZw91eYfQFzRtGfTemReSSMN4kE445i6Etb3"]
 
 # Entry point
-ENTRYPOINT ["karbowanecd"]
+ENTRYPOINT ["karbowanecd", "--data-dir=/home/karbo/.karbowanec", "--restricted-rpc", "--rpc-bind-ip=0.0.0.0", "--rpc-bind-port=32348"]
