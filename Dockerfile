@@ -1,14 +1,16 @@
-# Usage: docker run -i --restart=always -v /home/.karbowanec:/home/karbo/.karbowanec --network=host --name=karbo-fullnode -td looongcat/karbo-fullnode
+# Usage: docker run -it --restart=always -v /home/.karbowanec:/home/karbo/.karbowanec -p 32347:32347 -p 32348:32348 --name=karbo-fullnode -d looongcat/karbo-fullnode
 
 FROM debian:9
-LABEL version="0.0.1"
 LABEL description="Karbowanec node image"
+LABEL version="0.1"
+LABEL repository="https://github.com/Looongcat/docker-karbo-fullnode"
+LABEL helpdesk="https://t.me/karbo_dev_lounge"
 
 # upgrade dist to latest and greatest
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y wget unzip
 
-# add restricted user for running node (maybe overkill? Check that later)
+# add restricted user for running node
 RUN /bin/bash -c 'adduser --disabled-password --gecos "" karbo'
 
 # Deploy last version of Karbo CLI suite
