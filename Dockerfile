@@ -15,11 +15,11 @@ RUN /bin/bash -c 'adduser --disabled-password --gecos "" karbo'
 
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo
-RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.4.6/karbo-cli-xenial-1.4.6_linux_x86_64.zip &&\
-    unzip karbo-cli-xenial-1.4.6_linux_x86_64.zip -d ./ &&\
-    rm karbo-cli-xenial-1.4.6_linux_x86_64.zip &&\
-    cp -a ./karbowanec-xenial-1.4.6_linux_x86_64/. /usr/bin/ &&\
-    rm -rf ./karbowanec-xenial-1.4.6_linux_x86_64
+RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.4.6/Karbo-stretch-1.4.6_linux_ARMv7.zip &&\
+    unzip Karbo-stretch-1.4.6_linux_ARMv7.zip -d ./ &&\
+    rm Karbo-stretch-1.4.6_linux_ARMv7.zip &&\
+    cp -a ./karbowanec-stretch-1.4.6_linux_ARMv7/. /usr/bin/ &&\
+    rm -rf ./karbowanec-stretch-1.4.6_linux_ARMv7
 
 # Create blockchain folder and assign owner to the files
 RUN /bin/bash -c 'mkdir /home/karbo/.karbowanec'
