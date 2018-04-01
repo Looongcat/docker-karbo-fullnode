@@ -2,7 +2,7 @@
 
 FROM debian:9
 LABEL description="Karbowanec node image"
-LABEL version="0.2"
+LABEL version="0.2.1"
 LABEL repository="https://github.com/Looongcat/docker-karbo-fullnode"
 LABEL helpdesk="https://t.me/karbo_dev_lounge"
 
@@ -15,20 +15,20 @@ RUN /bin/bash -c 'adduser --disabled-password --gecos "" karbo'
 
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo
-RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.4.8/karbo-cli-1.4.8_x86_64.tar.gz &&\
-    tar -xzf karbo-cli-1.4.8_x86_64.tar.gz &&\
-    rm karbo-cli-1.4.8_x86_64.tar.gz &&\
-    cp -a ./karbo/. /usr/bin/ &&\
-    rm -rf ./karbo
+RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.4.8/karbo-cli-xenial-1.4.8_linux_x86_64.zip &&\
+    unzip karbo-cli-xenial-1.4.8_linux_x86_64.zip &&\
+    rm karbo-cli-xenial-1.4.8_linux_x86_64.zip &&\
+    cp -a ./karbowanec-xenial-1.4.8_linux_x86_64/. /usr/bin/ &&\
+    rm -rf ./karbowanec-xenial-1.4.8_linux_x86_64
 
 # Create blockchain folder and assign owner to the files
 RUN /bin/bash -c 'mkdir /home/karbo/.karbowanec'
 RUN /bin/bash -c 'chown karbo:karbo /home/karbo/.karbowanec'
 RUN /bin/bash -c 'chown karbo:karbo /usr/bin/karbowanecd'
-# RUN /bin/bash -c 'chown karbo:karbo /usr/bin/miner'
+RUN /bin/bash -c 'chown karbo:karbo /usr/bin/miner'
 RUN /bin/bash -c 'chown karbo:karbo /usr/bin/simplewallet'
 RUN /bin/bash -c 'chown karbo:karbo /usr/bin/walletd'
-# RUN /bin/bash -c 'chown karbo:karbo /usr/bin/connectivity_tool'
+RUN /bin/bash -c 'chown karbo:karbo /usr/bin/connectivity_tool'
 
 # Open container's ports for P2P and Lightwallet connections
 EXPOSE 32347/tcp 32348/tcp
