@@ -2,7 +2,7 @@
 
 FROM debian:9
 LABEL description="Karbowanec node image"
-LABEL version="0.2.1"
+LABEL version="0.2.2"
 LABEL repository="https://github.com/Looongcat/docker-karbo-fullnode"
 LABEL helpdesk="https://t.me/karbo_dev_lounge"
 
@@ -24,8 +24,11 @@ RUN /bin/bash -c 'make'
 
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo/karbowanec/build/release/src
-RUN /bin/bash -c 'cp -a ./. /usr/bin/'
-#RUN /bin/bash -c 'cp -a ./*.so /usr/lib64/'
+RUN /bin/bash -c 'cp karbowanecd /usr/bin/karbowanecd'
+RUN /bin/bash -c 'cp connectivity_tool /usr/bin/connectivity_tool'
+RUN /bin/bash -c 'cp miner /usr/bin/miner'
+RUN /bin/bash -c 'cp simplewallet /usr/bin/simplewallet'
+RUN /bin/bash -c 'cp walletd /usr/bin/walletd'
 
 # Create blockchain folder and assign owner to the files
 RUN /bin/bash -c 'mkdir /home/karbo/.karbowanec'
@@ -39,8 +42,8 @@ RUN /bin/bash -c 'chown karbo:karbo /usr/bin/connectivity_tool'
 # Cleaning
 WORKDIR /home/karbo
 RUN /bin/bash -c 'rm -rf karbowanec'
-RUN /bin/bash -c 'apt-get remove -y --purge g++ libboost-all-dev cmake git'
-RUN /bin/bash -c 'apt-get autoremove -y'
+#RUN /bin/bash -c 'apt-get remove -y --purge g++ libboost-all-dev cmake git'
+#RUN /bin/bash -c 'apt-get autoremove -y'
 
 # Open container's ports for P2P and Lightwallet connections
 EXPOSE 32347/tcp 32348/tcp
