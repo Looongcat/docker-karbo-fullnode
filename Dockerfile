@@ -25,6 +25,7 @@ RUN /bin/bash -c 'make'
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo/karbowanec/build/release/src
 RUN /bin/bash -c 'cp -a ./. /usr/bin/'
+#RUN /bin/bash -c 'cp -a ./*.so /usr/lib64/'
 
 # Create blockchain folder and assign owner to the files
 RUN /bin/bash -c 'mkdir /home/karbo/.karbowanec'
