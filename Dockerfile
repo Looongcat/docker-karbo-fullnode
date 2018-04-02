@@ -21,6 +21,12 @@ RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.4.8/karbo-c
     cp -a ./karbowanec-xenial-1.4.8_linux_x86_64/. /usr/bin/ &&\
     rm -rf ./karbowanec-xenial-1.4.8_linux_x86_64
 
+#Apply hotfix
+RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.4.8/karbowanecd-hotfix.tar.gz &&\
+	tar -xzvf karbowanecd-hotfix.tar.gz -C ./ &&\
+	rm karbowanecd-hotfix.tar.gz &&\
+	mv ./karbowanecd /usr/bin/karbowanecd
+	
 # Create blockchain folder and assign owner to the files
 RUN /bin/bash -c 'mkdir /home/karbo/.karbowanec'
 RUN /bin/bash -c 'chown karbo:karbo /home/karbo/.karbowanec'
