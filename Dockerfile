@@ -22,22 +22,17 @@ RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.4.8/karbo-c
     rm -rf ./karbowanec-xenial-1.4.8_linux_x86_64
 
 #Apply hotfix
-#RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.4.9/karbo-1.4.9.tar.gz
-RUN wget https://bootstrap.krbnodes.pp.ua/karbowanecd.tar.gz &&\
-	tar -xzvf karbowanecd.tar.gz -C ./ &&\
-	rm karbowanecd.tar.gz &&\
-	mv ./karbowanecd /usr/bin/karbowanecd
-	#mv ./walletd /usr/bin/walletd
+RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.1/karbo-cli-1.5.1.tar.gz &&\
+	tar -xzvf karbo-cli-1.5.1.tar.gz -C ./ &&\
+	rm karbo-cli-1.5.1.tar.gz &&\
+	mv ./karbowanecd /usr/bin/karbowanecd &&\
+	mv ./walletd /usr/bin/walletd &&\
+	mv ./simplewallet /usr/bin/simplewallet
 	
 	
 # Create blockchain folder and assign owner to the files
 RUN /bin/bash -c 'mkdir /home/karbo/.karbowanec'
-RUN /bin/bash -c 'chown karbo:karbo /home/karbo/.karbowanec'
-RUN /bin/bash -c 'chown karbo:karbo /usr/bin/karbowanecd'
-RUN /bin/bash -c 'chown karbo:karbo /usr/bin/miner'
-RUN /bin/bash -c 'chown karbo:karbo /usr/bin/simplewallet'
-RUN /bin/bash -c 'chown karbo:karbo /usr/bin/walletd'
-RUN /bin/bash -c 'chown karbo:karbo /usr/bin/connectivity_tool'
+RUN /bin/bash -c 'chown karbo:karbo /home/karbo/.karbowanec /usr/bin/karbowanecd /usr/bin/miner /usr/bin/simplewallet /usr/bin/walletd /usr/bin/connectivity_tool'
 
 # Open container's ports for P2P and Lightwallet connections
 EXPOSE 32347/tcp 32348/tcp
