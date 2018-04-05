@@ -2,7 +2,7 @@
 
 FROM debian:9
 LABEL description="Karbowanec node image"
-LABEL version="0.2.2"
+LABEL version="0.2.3"
 LABEL repository="https://github.com/Looongcat/docker-karbo-fullnode"
 LABEL helpdesk="https://t.me/karbo_dev_lounge"
 
@@ -20,7 +20,10 @@ RUN /bin/bash -c 'adduser --disabled-password --gecos "" karbo'
 WORKDIR /home/karbo
 RUN /bin/bash -c 'git clone https://github.com/seredat/karbowanec.git'
 WORKDIR /home/karbo/karbowanec
-RUN /bin/bash -c 'make'
+# switch to latest released version
+RUN /bin/bash -c 'git checkout tags/$(git describe) -b $(git describe)'
+# make
+RUN /bin/bash -c 'make -j$(nproc -all)'
 
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo/karbowanec/build/release/src
