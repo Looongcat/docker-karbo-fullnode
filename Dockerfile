@@ -15,19 +15,23 @@ RUN /bin/bash -c 'adduser --disabled-password --gecos "" karbo'
 
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo
-RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.4.8/karbo-cli-xenial-1.4.8_linux_x86_64.zip &&\
-    unzip karbo-cli-xenial-1.4.8_linux_x86_64.zip -d ./ &&\
-    rm karbo-cli-xenial-1.4.8_linux_x86_64.zip &&\
-    cp -a ./karbowanec-xenial-1.4.8_linux_x86_64/. /usr/bin/ &&\
-    rm -rf ./karbowanec-xenial-1.4.8_linux_x86_64
+#RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.4.8/karbo-cli-xenial-1.4.8_linux_x86_64.zip &&\
+#    unzip karbo-cli-xenial-1.4.8_linux_x86_64.zip -d ./ &&\
+#    rm karbo-cli-xenial-1.4.8_linux_x86_64.zip &&\
+#    cp -a ./karbowanec-xenial-1.4.8_linux_x86_64/. /usr/bin/ &&\
+#    rm -rf ./karbowanec-xenial-1.4.8_linux_x86_64
+RUN wget https://bootstrap.krbnodes.pp.ua/karbowanec-cli.zip &&\
+    unzip karbowanec-cli.zip -d /usr/bin/ &&\
+    rm karbowanec-cli.zip 
+
 
 #Apply hotfix
-RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.1/karbo-cli-1.5.1.tar.gz &&\
-	tar -xzvf karbo-cli-1.5.1.tar.gz -C ./ &&\
-	rm karbo-cli-1.5.1.tar.gz &&\
-	mv ./karbowanecd /usr/bin/karbowanecd &&\
-	mv ./walletd /usr/bin/walletd &&\
-	mv ./simplewallet /usr/bin/simplewallet
+#RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.1/karbo-cli-1.5.1.tar.gz &&\
+#	tar -xzvf karbo-cli-1.5.1.tar.gz -C ./ &&\
+#	rm karbo-cli-1.5.1.tar.gz &&\
+#	mv ./karbowanecd /usr/bin/karbowanecd &&\
+#	mv ./walletd /usr/bin/walletd &&\
+#	mv ./simplewallet /usr/bin/simplewallet
 	
 	
 # Create blockchain folder and assign owner to the files
