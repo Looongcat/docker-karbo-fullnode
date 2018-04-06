@@ -22,7 +22,8 @@ WORKDIR /home/karbo
 #    rm -rf ./karbowanec-xenial-1.4.8_linux_x86_64
 RUN wget https://bootstrap.krbnodes.pp.ua/karbowanec-cli.zip &&\
     unzip karbowanec-cli.zip -d /usr/bin/ &&\
-    rm karbowanec-cli.zip 
+    rm karbowanec-cli.zip &&\
+	chmod +x /usr/bin/karbowanecd /usr/bin/miner /usr/bin/walletd /usr/bin/simplewallet /usr/bin/connectivity_tool
 
 
 #Apply hotfix
