@@ -2,7 +2,7 @@
 
 FROM debian:9
 LABEL description="Karbowanec node image"
-LABEL version="0.2.1"
+LABEL version="0.2.2"
 LABEL repository="https://github.com/Looongcat/docker-karbo-fullnode"
 LABEL helpdesk="https://t.me/karbo_dev_lounge"
 
@@ -15,16 +15,15 @@ RUN /bin/bash -c 'adduser --disabled-password --gecos "" karbo'
 
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo
-#RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.4.8/karbo-cli-xenial-1.4.8_linux_x86_64.zip &&\
-#    unzip karbo-cli-xenial-1.4.8_linux_x86_64.zip -d ./ &&\
-#    rm karbo-cli-xenial-1.4.8_linux_x86_64.zip &&\
-#    cp -a ./karbowanec-xenial-1.4.8_linux_x86_64/. /usr/bin/ &&\
-#    rm -rf ./karbowanec-xenial-1.4.8_linux_x86_64
-RUN wget https://bootstrap.krbnodes.pp.ua/karbowanec-cli.zip &&\
-    unzip karbowanec-cli.zip -d /usr/bin/ &&\
-    rm karbowanec-cli.zip &&\
-	chmod +x /usr/bin/karbowanecd /usr/bin/miner /usr/bin/walletd /usr/bin/simplewallet /usr/bin/connectivity_tool
-
+RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.1/karbo-xenial-1.5.1b2_linux_x86_64.zip &&\
+    unzip karbo-xenial-1.5.1b2_linux_x86_64.zip -d ./ &&\
+    rm karbo-xenial-1.5.1b2_linux_x86_64.zip &&\
+    cp -a ./karbo-xenial-1.5.1b2_linux_x86_64/. /usr/bin/ &&\
+    rm -rf ./karbo-xenial-1.5.1b2_linux_x86_64
+#RUN wget https://bootstrap.krbnodes.pp.ua/karbowanec-cli.zip &&\
+#    unzip karbowanec-cli.zip -d /usr/bin/ &&\
+#    rm karbowanec-cli.zip &&\
+#	chmod +x /usr/bin/karbowanecd /usr/bin/miner /usr/bin/walletd /usr/bin/simplewallet /usr/bin/connectivity_tool
 
 #Apply hotfix
 #RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.1/karbo-cli-1.5.1.tar.gz &&\
@@ -33,8 +32,7 @@ RUN wget https://bootstrap.krbnodes.pp.ua/karbowanec-cli.zip &&\
 #	mv ./karbowanecd /usr/bin/karbowanecd &&\
 #	mv ./walletd /usr/bin/walletd &&\
 #	mv ./simplewallet /usr/bin/simplewallet
-	
-	
+		
 # Create blockchain folder and assign owner to the files
 RUN /bin/bash -c 'mkdir /home/karbo/.karbowanec'
 RUN /bin/bash -c 'chown karbo:karbo /home/karbo/.karbowanec /usr/bin/karbowanecd /usr/bin/miner /usr/bin/simplewallet /usr/bin/walletd /usr/bin/connectivity_tool'
