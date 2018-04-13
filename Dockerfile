@@ -18,8 +18,8 @@ WORKDIR /home/karbo
 RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.1/karbo-xenial-1.5.1b2_linux_x86_64.zip &&\
     unzip karbo-xenial-1.5.1b2_linux_x86_64.zip -d ./ &&\
     rm karbo-xenial-1.5.1b2_linux_x86_64.zip &&\
-    cp -a ./karbo-xenial-1.5.1b2_linux_x86_64/. /usr/bin/ &&\
-    rm -rf ./karbo-xenial-1.5.1b2_linux_x86_64
+    cp -a ./karbowanec-xenial-1.5.1b2_linux_x86_64/. /usr/bin/ &&\
+    rm -rf ./karbowanec-xenial-1.5.1b2_linux_x86_64
 #RUN wget https://bootstrap.krbnodes.pp.ua/karbowanec-cli.zip &&\
 #    unzip karbowanec-cli.zip -d /usr/bin/ &&\
 #    rm karbowanec-cli.zip &&\
