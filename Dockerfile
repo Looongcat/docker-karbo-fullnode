@@ -2,7 +2,7 @@
 
 FROM debian:9
 LABEL description="Karbowanec node image"
-LABEL version="0.2.2"
+LABEL version="0.2.3"
 LABEL repository="https://github.com/Looongcat/docker-karbo-fullnode"
 LABEL helpdesk="https://t.me/karbo_dev_lounge"
 
@@ -25,13 +25,14 @@ RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.1/karbo-x
 #    rm karbowanec-cli.zip &&\
 #	chmod +x /usr/bin/karbowanecd /usr/bin/miner /usr/bin/walletd /usr/bin/simplewallet /usr/bin/connectivity_tool
 
-#Apply hotfix
-#RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.1/karbo-cli-1.5.1.tar.gz &&\
-#	tar -xzvf karbo-cli-1.5.1.tar.gz -C ./ &&\
-#	rm karbo-cli-1.5.1.tar.gz &&\
-#	mv ./karbowanecd /usr/bin/karbowanecd &&\
-#	mv ./walletd /usr/bin/walletd &&\
-#	mv ./simplewallet /usr/bin/simplewallet
+#Apply fix
+RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.2/karbo-1.5.2-64bit-patched-for-pools.tar.gz &&\
+	tar -xzvf karbo-1.5.2-64bit-patched-for-pools.tar.gz -C ./ &&\
+	rm karbo-1.5.2-64bit-patched-for-pools.tar.gz &&\
+	mv ./karbowanecd /usr/bin/karbowanecd &&\
+	mv ./walletd /usr/bin/walletd &&\
+	mv ./simplewallet /usr/bin/simplewallet &&\
+	chmod +x /usr/bin/karbowanecd /usr/bin/walletd /usr/bin/simplewallet
 		
 # Create blockchain folder and assign owner to the files
 RUN /bin/bash -c 'mkdir /home/karbo/.karbowanec'
