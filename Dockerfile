@@ -15,13 +15,12 @@ RUN /bin/bash -c 'adduser --disabled-password --gecos "" karbo'
 
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo
-RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.3/karbo-cli-1.5.3-64bit.tar.gz &&\
-	tar -xzvf karbo-cli-1.5.3-64bit.tar.gz -C ./ &&\
-	rm karbo-cli-1.5.3-64bit.tar.gz &&\
+RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.4/karbo-cli-1.5.4-official.tar.gz &&\
+	tar -xzvf karbo-cli-1.5.4-official.tar.gz -C ./ &&\
+	rm karbo-cli-1.5.4-official.tar.gz &&\
 	mv ./karbowanecd /usr/bin/karbowanecd &&\
 	mv ./walletd /usr/bin/walletd &&\
 	mv ./simplewallet /usr/bin/simplewallet &&\
-	rm Readme.txt &&\
 	chmod +x /usr/bin/karbowanecd /usr/bin/walletd /usr/bin/simplewallet
 		
 # Create blockchain folder and assign owner to the files
