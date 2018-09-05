@@ -2,7 +2,7 @@
 
 FROM debian:9
 LABEL description="Karbowanec node image"
-LABEL version="0.2.5"
+LABEL version="0.2.6"
 LABEL repository="https://github.com/Looongcat/docker-karbo-fullnode"
 LABEL helpdesk="https://t.me/karbo_dev_lounge"
 
@@ -15,18 +15,17 @@ RUN /bin/bash -c 'adduser --disabled-password --gecos "" karbo'
 
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo
-RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.6/karbowanec-xenial-1.5.6_linux_x86_64.zip &&\
-	unzip karbowanec-xenial-1.5.6_linux_x86_64.zip &&\
-	rm karbowanec-xenial-1.5.6_linux_x86_64.zip &&\
-	mv ./karbowanec-xenial-1.5.6_linux_x86_64/karbowanecd /usr/bin/karbowanecd &&\
-	mv ./karbowanec-xenial-1.5.6_linux_x86_64/walletd /usr/bin/walletd &&\
-	mv ./karbowanec-xenial-1.5.6_linux_x86_64/simplewallet /usr/bin/simplewallet &&\
-	chmod +x /usr/bin/karbowanecd /usr/bin/walletd /usr/bin/simplewallet &&\
-	rm -rf ./karbowanec-xenial-1.5.6_linux_x86_64
+RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.7/karbo-cli-v1.5.7.805-41b6a9c-trusty-64bit.tar.gz &&\
+	tar -xzvf karbo-cli-v1.5.7.805-41b6a9c-trusty-64bit.tar.gz &&\
+	rm karbo-cli-v1.5.7.805-41b6a9c-trusty-64bit.tar.gz Readme.txt &&\
+	mv ./karbowanecd /usr/bin/karbowanecd &&\
+	#mv ./walletd /usr/bin/walletd &&\
+	mv ./simplewallet /usr/bin/simplewallet &&\
+	chmod +x /usr/bin/karbowanecd /usr/bin/simplewallet # /usr/bin/walletd 
 		
 # Create blockchain folder and assign owner to the files
 RUN /bin/bash -c 'mkdir /home/karbo/.karbowanec'
-RUN /bin/bash -c 'chown karbo:karbo /home/karbo/.karbowanec /usr/bin/karbowanecd /usr/bin/simplewallet /usr/bin/walletd'
+RUN /bin/bash -c 'chown karbo:karbo /home/karbo/.karbowanec /usr/bin/karbowanecd /usr/bin/simplewallet' # /usr/bin/walletd'
 
 # Open container's ports for P2P and Lightwallet connections
 EXPOSE 32347/tcp 32348/tcp
