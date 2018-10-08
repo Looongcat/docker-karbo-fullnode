@@ -2,7 +2,7 @@
 
 FROM debian:9
 LABEL description="Karbowanec node image"
-LABEL version="0.2.7"
+LABEL version="0.2.8"
 LABEL repository="https://github.com/Looongcat/docker-karbo-fullnode"
 LABEL helpdesk="https://t.me/karbo_dev_lounge"
 
@@ -15,14 +15,14 @@ RUN /bin/bash -c 'adduser --disabled-password --gecos "" karbo'
 
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo
-RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.7/karbowanec-xenial-1.5.7_linux_x86_64.zip &&\
-	unzip karbowanec-xenial-1.5.7_linux_x86_64.zip &&\
-	rm karbowanec-xenial-1.5.7_linux_x86_64.zip &&\
-	mv ./karbowanec-xenial-1.5.7_linux_x86_64/karbowanecd /usr/bin/karbowanecd &&\
-	mv ./karbowanec-xenial-1.5.7_linux_x86_64/walletd /usr/bin/walletd &&\
-	mv ./karbowanec-xenial-1.5.7_linux_x86_64/simplewallet /usr/bin/simplewallet &&\
+RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.9/karbowanec-xenial-1.5.9_linux_x86_64.zip &&\
+	unzip karbowanec-xenial-1.5.9_linux_x86_64.zip &&\
+	rm karbowanec-xenial-1.5.9_linux_x86_64.zip &&\
+	mv ./karbowanec-xenial-1.5.9_linux_x86_64/karbowanecd /usr/bin/karbowanecd &&\
+	mv ./karbowanec-xenial-1.5.9_linux_x86_64/walletd /usr/bin/walletd &&\
+	mv ./karbowanec-xenial-1.5.9_linux_x86_64/simplewallet /usr/bin/simplewallet &&\	
 	chmod +x /usr/bin/karbowanecd /usr/bin/walletd /usr/bin/simplewallet &&\
-	rm -rf ./karbowanec-xenial-1.5.7_linux_x86_64
+	rm -rf ./karbowanec-xenial-1.5.9_linux_x86_64
 		
 # Create blockchain folder and assign owner to the files
 RUN /bin/bash -c 'mkdir /home/karbo/.karbowanec'
