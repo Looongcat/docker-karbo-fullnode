@@ -15,14 +15,13 @@ RUN /bin/bash -c 'adduser --disabled-password --gecos "" karbo'
 
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo
-RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.5.9/karbowanec-xenial-1.5.9_linux_x86_64.zip &&\
-	unzip karbowanec-xenial-1.5.9_linux_x86_64.zip &&\
-	rm karbowanec-xenial-1.5.9_linux_x86_64.zip &&\
-	mv ./karbowanec-xenial-1.5.9_linux_x86_64/karbowanecd /usr/bin/karbowanecd &&\
-	mv ./karbowanec-xenial-1.5.9_linux_x86_64/walletd /usr/bin/walletd &&\
-	mv ./karbowanec-xenial-1.5.9_linux_x86_64/simplewallet /usr/bin/simplewallet &&\	
-	chmod +x /usr/bin/karbowanecd /usr/bin/walletd /usr/bin/simplewallet &&\
-	rm -rf ./karbowanec-xenial-1.5.9_linux_x86_64
+RUN wget https://karbo.io/download/karbo-cli-v1.6.0-64-bit.tar.gz &&\
+	tar -xzvf karbo-cli-v1.6.0-64-bit.tar.gz &&\
+	rm karbo-cli-v1.6.0-64-bit.tar.gz &&\
+	mv ./karbowanecd /usr/bin/karbowanecd &&\
+	mv ./walletd /usr/bin/walletd &&\
+	mv ./simplewallet /usr/bin/simplewallet &&\
+	chmod +x /usr/bin/karbowanecd /usr/bin/walletd /usr/bin/simplewallet
 		
 # Create blockchain folder and assign owner to the files
 RUN /bin/bash -c 'mkdir /home/karbo/.karbowanec'
