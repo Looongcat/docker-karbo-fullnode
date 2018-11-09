@@ -2,7 +2,7 @@
 
 FROM debian:9
 LABEL description="Karbowanec node image"
-LABEL version="0.2.8"
+LABEL version="0.2.9"
 LABEL repository="https://github.com/Looongcat/docker-karbo-fullnode"
 LABEL helpdesk="https://t.me/karbo_dev_lounge"
 
@@ -15,9 +15,9 @@ RUN /bin/bash -c 'adduser --disabled-password --gecos "" karbo'
 
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo
-RUN wget https://karbo.io/download/karbo-cli-v1.6.0-64-bit.tar.gz &&\
-	tar -xzvf karbo-cli-v1.6.0-64-bit.tar.gz &&\
-	rm karbo-cli-v1.6.0-64-bit.tar.gz &&\
+RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.6.1/karbo-cli-v1.6.1-64-bit.tar.gz &&\
+	tar -xzvf karbo-cli-v1.6.1-64-bit.tar.gz &&\
+	rm karbo-cli-v1.6.1-64-bit.tar.gz &&\
 	mv ./karbowanecd /usr/bin/karbowanecd &&\
 	mv ./walletd /usr/bin/walletd &&\
 	mv ./simplewallet /usr/bin/simplewallet &&\
