@@ -2,7 +2,7 @@
 
 FROM debian:9
 LABEL description="Karbowanec node image"
-LABEL version="0.3.1"
+LABEL version="0.3.2"
 LABEL repository="https://github.com/Looongcat/docker-karbo-fullnode"
 LABEL helpdesk="https://t.me/karbo_dev_lounge"
 
@@ -15,15 +15,14 @@ RUN /bin/bash -c 'adduser --disabled-password --gecos "" karbo'
 
 # Deploy last version of Karbo CLI suite
 WORKDIR /home/karbo
-RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.6.4/karbo-cli-v1.6.4-64bit-trusty.tar.gz &&\
-	tar -xzvf karbo-cli-v1.6.4-64bit-trusty.tar.gz &&\
-	rm karbo-cli-v1.6.4-64bit-trusty.tar.gz &&\
+RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.6.5/karbo-cli-v1.6.5-64bit_trusty.tar.gz &&\
+	tar -xzvf karbo-cli-v1.6.5-64bit_trusty.tar.gz &&\
+	rm karbo-cli-v1.6.5-64bit_trusty.tar.gz &&\
 	rm Readme.txt &&\
 	mv ./karbowanecd /usr/bin/karbowanecd &&\
 	mv ./walletd /usr/bin/walletd &&\
 	mv ./simplewallet /usr/bin/simplewallet &&\
 	mv ./greenwallet /usr/bin/greenwallet &&\
-	
 	chmod +x /usr/bin/karbowanecd /usr/bin/walletd /usr/bin/simplewallet /usr/bin/greenwallet 
 		
 # Create blockchain folder and assign owner to the files
