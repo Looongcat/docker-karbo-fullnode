@@ -18,7 +18,7 @@ WORKDIR /home/karbo
 RUN wget https://github.com/seredat/karbowanec/releases/download/v.1.6.5/karbo-cli-v1.6.5-64bit_trusty.tar.gz &&\
 	tar -xzvf karbo-cli-v1.6.5-64bit_trusty.tar.gz &&\
 	rm karbo-cli-v1.6.5-64bit_trusty.tar.gz &&\
-	rm Readme.txt &&\
+#	rm Readme.txt &&\
 	mv ./karbowanecd /usr/bin/karbowanecd &&\
 	mv ./walletd /usr/bin/walletd &&\
 	mv ./simplewallet /usr/bin/simplewallet &&\
