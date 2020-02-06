@@ -1,3 +1,6 @@
+## Attention!
+This repository was deprecated and is no longer maintained, for newer version please go to https://github.com/Karbovanets/karbo-cli-docker
+
 # Docker-karbo-fullnode
 Docker image for running Karbowanec full node
 
